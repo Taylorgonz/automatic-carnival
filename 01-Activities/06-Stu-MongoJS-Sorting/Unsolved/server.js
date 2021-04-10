@@ -3,7 +3,7 @@ const mongojs = require("mongojs");
 
 const app = express();
 
-const databaseUrl = "mongodb+srv://taylorgonz-admin:vCyowWOt2NlG58Hh@cluster0.djs8r.mongodb.net/zoo?retryWrites=true&w=majority";
+const databaseUrl = "mongodb://taylorgonz-admin:vCyowWOt2NlG58Hh@cluster0-shard-00-00.djs8r.mongodb.net:27017,cluster0-shard-00-01.djs8r.mongodb.net:27017,cluster0-shard-00-02.djs8r.mongodb.net:27017/zoo?ssl=true&replicaSet=atlas-j6n84p-shard-0&authSource=admin&retryWrites=true&w=majority";
 const collections = ["animals"];
 
 

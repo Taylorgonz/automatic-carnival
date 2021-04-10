@@ -1,6 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+require('dotenv')
 
 const PORT = process.env.PORT || 3000;
 
@@ -15,7 +16,7 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populatedb", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populatedb",  { useNewUrlParser: true });
 
 db.User.create({ name: "Ernest Hemingway" })
   .then(dbUser => {
@@ -59,6 +60,14 @@ app.post("/submit", ({ body }, res) => {
 app.get("/populateduser", (req, res) => {
   // TODO
   // =====
+  db.User.find({})
+  .populate("notes")
+  .then(dbUser => {
+    res.json(dbUser);
+  })
+  .catch(err => {
+    res.json(err);
+  });
   // Write the query to grab the documents from the User collection,
   // and populate them with any associated Notes.
   // TIP: Check the models out to see how the Notes refers to the User
